@@ -2,10 +2,13 @@
 const express = require('express');
 const app = express();
 require('dotenv').config();
+const cors = require('cors')
 const dbPaises = require('./db/db')
 
 //configuramos nuestro servidor
 app.use(express.json())
+//Esto es para poder acer las consultas entre servidores - 
+app.use(cors())
 
 
 //Iniciamos nuestro servidor
@@ -69,10 +72,6 @@ app.delete('/pais/:nombre', (req,res)=> {
             mensaje: 'El pais que intenta eliminar no existe en la DB'
         }
     }
-
-    
-
-   
 
     res.send(dbPaises.Respuesta)
 })
